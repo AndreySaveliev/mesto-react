@@ -1,10 +1,10 @@
-import logo from '../images/header-logo.svg';
+import logo from "../images/header-logo.svg";
 function Header() {
-  return(
+  return (
     <header className="header">
       <img className="header__logo" src={logo} alt="логотип" />
     </header>
-  ) 
+  );
 }
 
-export default Header
+export default Header;
