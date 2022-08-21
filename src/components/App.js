@@ -1,7 +1,7 @@
+import { useState } from 'react';
 import Header from './Header.js'
 import Main from './Main.js';
 import Footer from './Footer.js';
-import React from 'react';
 import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 
@@ -9,10 +9,10 @@ import ImagePopup from './ImagePopup.js';
 
 function App() {
 
-  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = React.useState(false)
-  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = React.useState(false)
-  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = React.useState(false)
-  const [selectedCard, setSelectedCard] = React.useState({card: '', isOpen: false})
+  const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false)
+  const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false)
+  const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState({card: '', isOpen: false})
 
   function handleEditAvatarClick() {
     console.log('avatar')
