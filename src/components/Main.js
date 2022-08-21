@@ -1,23 +1,21 @@
 import React from "react"
-import PopupWithForm from "./PopupWithForm.js"
+import { useEffect, useState } from "react";
 import { bid } from '../utils/Api.js';
 import Card from "./Card.js";
 function Main({
   onEditProfile,
   onAddPlace,
   onEditAvatar,
-  userData,
-  handleCardClick,
-  onCardClick
+  onCardClick,
 }) {
 
-  const [userName, setUserName] = React.useState([])
-  const [userDescription , setuserDescription ] = React.useState([])
-  const [userAvatar, setuserAvatar] = React.useState([])
-  const [cards, setCards] = React.useState([])
+  const [userName, setUserName] = useState('')
+  const [userDescription , setuserDescription ] = useState('')
+  const [userAvatar, setuserAvatar] = useState('')
+  const [cards, setCards] = useState([])
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     bid.getUser()
       .then((res) => {
         setUserName(...userName, res.name)
@@ -26,7 +24,7 @@ function Main({
       })
   }, [])
   
-  React.useEffect(() => {
+  useEffect(() => {
     bid.getInitialCards()
       .then(res => setCards(...cards, res))
   }, [])
