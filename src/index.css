@@ -1,5 +1,5 @@
 @import url(./vendor/nomalize.css);
-@import url(./fonts/font.css);
+@import url(./vendor/fonts/font.css);
 @import url(./blocks/grid/__like/grid__like-number.css);
 @import url(./blocks/grid/__cell/grid__cell.css);
 @import url(./blocks/grid/__description/grid__desription.css);
