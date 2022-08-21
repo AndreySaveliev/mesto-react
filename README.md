@@ -10,6 +10,6 @@
 ```   
 Эта команда запустит локальный сервер, которые будет отображать вносимые изминения    
 ## Ссылка на Gh-Pages   
-[click]:https://andreysaveliev.github.io/mesto-react/
+[click](https://andreysaveliev.github.io/mesto-react/)
 
 ![alt text](https://reactjs.org/logo-og.png "react-logo")
