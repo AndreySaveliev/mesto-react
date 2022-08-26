@@ -1,5 +1,4 @@
 # MESTO  
-![alt text](./src/images/header-logo.svg "mesto-logo")    
 ## Обзор    
 Сайт для загрузки и просмотра фото
 ## Stack   
