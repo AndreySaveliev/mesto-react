@@ -80,9 +80,9 @@ function App() {
 
   function handleAddPlaceSubmit(card) {
     bid.postCard(card.name, card.link).then((newCard) => {
-      setCards([newCard, ...cards])
-      closeAllPopups()
-    })
+      setCards([newCard, ...cards]);
+      closeAllPopups();
+    });
   }
 
   useEffect(() => {

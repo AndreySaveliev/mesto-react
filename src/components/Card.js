@@ -12,7 +12,7 @@ function Card({ card, onCardClick, currentUser, onCardLike, onCardDelete }) {
   }
 
   function handleCardDelete() {
-    onCardDelete(card)
+    onCardDelete(card);
   }
 
   return (
