@@ -1,4 +1,12 @@
-function PopupWithForm({ onClose, name, title, buttonText, isOpen, children }) {
+function PopupWithForm({
+  onClose,
+  name,
+  title,
+  buttonText,
+  isOpen,
+  children,
+  onSubmit,
+}) {
   return (
     <section
       className={`popup popup-${name} ${isOpen && "popup_opened"}`}
@@ -22,6 +30,7 @@ function PopupWithForm({ onClose, name, title, buttonText, isOpen, children }) {
             id={`popup__${name}`}
             className="popup__form"
             noValidate
+            onSubmit={onSubmit}
           >
             {children}
             <button
