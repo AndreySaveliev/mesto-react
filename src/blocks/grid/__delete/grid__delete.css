@@ -15,3 +15,7 @@
 .grid__delete:hover {
   opacity: 0.6;
 }
+
+.button_hiden {
+  visibility: hidden;
+}
