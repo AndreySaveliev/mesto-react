@@ -4,12 +4,12 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
 
-  function handleChange(event) {
-    if (event.target.name == "name") {
-      setName(event.target.value);
-    } else {
-      setLink(event.target.value);
-    }
+  function handleChangeNameInput(event) {
+    setName(event.target.value);
+  }
+
+  function handleChangeLinkInput(event) {
+    setLink(event.target.value);
   }
 
   function handleSubmit(event) {
@@ -46,7 +46,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           maxLength="30"
           autoComplete="off"
           value={name}
-          onChange={handleChange}
+          onChange={handleChangeNameInput}
         />
         <span className="cardname-error popup__form-input-error"></span>
       </div>
@@ -60,7 +60,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
           required
           autoComplete="off"
           value={link}
-          onChange={handleChange}
+          onChange={handleChangeLinkInput}
         />
         <span className="cardlink-error popup__form-input-error"></span>
       </div>
