@@ -54,7 +54,6 @@ function App() {
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    console.log(selectedCard);
   }
   function handleClickLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
