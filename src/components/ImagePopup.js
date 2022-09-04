@@ -1,9 +1,8 @@
-import Card from "./Card";
 function ImagePopup({ onClose, card, isOpen }) {
   return (
     <section
       className={`popup popup-card popup-card-section ${
-        isOpen && "popup_opened"
+        Object.keys(card).length != 0 && "popup_opened"
       }`}
       onClick={(e) => {
         if (e.target.classList.contains("popup")) {
