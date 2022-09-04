@@ -8,12 +8,6 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
-  useEffect(() => {
-    setName(currentUser.name);
-    setDescription(currentUser.about);
-  }, [isOpen]);
-
-
   function handleChangeNameInput(event) {
     setName(event.target.value);
   }
@@ -29,6 +23,11 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
       about: description,
     });
   }
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setDescription(currentUser.about);
+  }, [isOpen]);
 
   return (
     <PopupWithForm
@@ -49,7 +48,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           minLength="2"
           maxLength="40"
           autoComplete="off"
-          value={name || ''}
+          value={name || ""}
           defaultValue={currentUser.name}
           onChange={handleChangeNameInput}
         />
@@ -65,7 +64,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           minLength="2"
           maxLength="200"
           autoComplete="off"
-          value={description || ''}
+          value={description || ""}
           defaultValue={currentUser.about}
           onChange={handleChangeDescriptionInput}
         />
