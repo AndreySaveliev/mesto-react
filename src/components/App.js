@@ -37,19 +37,27 @@ function App() {
   }
 
   function handleUpdateUser(info) {
-    bid.saveUserData(info.name, info.about).then((res) => {
-      setCurrentUser(res);
-      closeAllPopups();
-    })
-    .catch(error => console.log('Ошибка! Не удалось обновить данные пользователя'));
+    bid
+      .saveUserData(info.name, info.about)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((error) =>
+        console.log("Ошибка! Не удалось обновить данные пользователя")
+      );
   }
 
   function handleUpdateAvatar(info) {
-    bid.changeProfilePic(info.avatar).then((res) => {
-      currentUser.avatar = res.avatar;
-      closeAllPopups();
-    })
-    .catch(error => console.log('Ошибка! Не удалось обновить аватар пользователя'));
+    bid
+      .changeProfilePic(info.avatar)
+      .then((res) => {
+        currentUser.avatar = res.avatar;
+        closeAllPopups();
+      })
+      .catch((error) =>
+        console.log("Ошибка! Не удалось обновить аватар пользователя")
+      );
   }
 
   function handleCardClick(card) {
@@ -58,48 +66,65 @@ function App() {
   function handleClickLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     if (!isLiked) {
-      bid.like(card._id, !isLiked).then((newCard) => {
-        
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        )
-      })
-      .catch(error => console.log('Ошибка! Не удалось отправить запрос'))
+      bid
+        .like(card._id, !isLiked)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((error) => console.log("Ошибка! Не удалось отправить запрос"));
     } else {
-      bid.unlike(card._id, !isLiked).then((newCard) => {
-        setCards((state) =>
-          state.map((c) => (c._id === card._id ? newCard : c))
-        )
-      })
-      .catch(error => console.log('Ошибка! Не удалось отправить запрос'));
+      bid
+        .unlike(card._id, !isLiked)
+        .then((newCard) => {
+          setCards((state) =>
+            state.map((c) => (c._id === card._id ? newCard : c))
+          );
+        })
+        .catch((error) => console.log("Ошибка! Не удалось отправить запрос"));
     }
   }
   function handleCardDelete(card) {
-    bid.deleteCard(card._id).then(() => {
-      const newCards = cards.filter((cardInArr) => cardInArr._id !== card._id);
-      setCards((cards) => {
-        return newCards;
-      });
-    })
-    .catch(error => console.log('Ошибка! Не удалось удалить карточку'));
+    bid
+      .deleteCard(card._id)
+      .then(() => {
+        const newCards = cards.filter(
+          (cardInArr) => cardInArr._id !== card._id
+        );
+        setCards((cards) => {
+          return newCards;
+        });
+      })
+      .catch((error) => console.log("Ошибка! Не удалось удалить карточку"));
   }
 
   function handleAddPlaceSubmit(card) {
-    bid.postCard(card.name, card.link).then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-    .catch(error => console.log('Ошибка! Не удалось создать карточку'));
+    bid
+      .postCard(card.name, card.link)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((error) => console.log("Ошибка! Не удалось создать карточку"));
   }
 
   useEffect(() => {
-    bid.getInitialCards().then((res) => setCards(...cards, res));
-  }, []);
+    bid
+      .getInitialCards()
+      .then((res) => {
+        setCards(...cards, res);
+      })
+      .catch((error) => console.log("Ошибка! Не удалось загрузить карточки"));
 
-  useEffect(() => {
-    bid.getUser().then((res) => {
-      setCurrentUser(res);
-    });
+    bid
+      .getUser()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((error) =>
+        console.log("Ошибка! Не удалось загрузить данные пользователя")
+      );
   }, []);
 
   return (
@@ -137,10 +162,7 @@ function App() {
           title="Вы уверены?"
           buttonText="Да"
         ></PopupWithForm>
-        <ImagePopup
-          onClose={closeAllPopups}
-          card={selectedCard}
-        ></ImagePopup>
+        <ImagePopup onClose={closeAllPopups} card={selectedCard}></ImagePopup>
       </CurrentUserContext.Provider>
     </div>
   );
