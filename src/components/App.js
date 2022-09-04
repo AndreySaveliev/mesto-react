@@ -14,7 +14,8 @@ function App() {
   const [isEditProfilePopupOpen, setEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarPopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({ card: "", isOpen: false });
+  // const [selectedCard, setSelectedCard] = useState({ card: {}, isOpen: false });
+  const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState("");
   const [cards, setCards] = useState([]);
 
@@ -32,41 +33,46 @@ function App() {
     setEditAvatarPopupOpen(false);
     setEditProfilePopupOpen(false);
     setAddPlacePopupOpen(false);
-    setSelectedCard({ ...selectedCard, card: "", isOpen: false });
+    setSelectedCard({});
   }
 
   function handleUpdateUser(info) {
     bid.saveUserData(info.name, info.about).then((res) => {
       setCurrentUser(res);
       closeAllPopups();
-    });
+    })
+    .catch(error => console.log('Ошибка! Не удалось обновить данные пользователя'));
   }
 
   function handleUpdateAvatar(info) {
     bid.changeProfilePic(info.avatar).then((res) => {
       currentUser.avatar = res.avatar;
       closeAllPopups();
-    });
+    })
+    .catch(error => console.log('Ошибка! Не удалось обновить аватар пользователя'));
   }
 
-  function handleCardClick(value) {
-    setSelectedCard({ ...selectedCard, card: value, isOpen: true });
+  function handleCardClick(card) {
+    setSelectedCard(card);
     console.log(selectedCard);
   }
   function handleClickLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     if (!isLiked) {
       bid.like(card._id, !isLiked).then((newCard) => {
+        
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      });
+        )
+      })
+      .catch(error => console.log('Ошибка! Не удалось отправить запрос'))
     } else {
       bid.unlike(card._id, !isLiked).then((newCard) => {
         setCards((state) =>
           state.map((c) => (c._id === card._id ? newCard : c))
-        );
-      });
+        )
+      })
+      .catch(error => console.log('Ошибка! Не удалось отправить запрос'));
     }
   }
   function handleCardDelete(card) {
@@ -75,14 +81,16 @@ function App() {
       setCards((cards) => {
         return newCards;
       });
-    });
+    })
+    .catch(error => console.log('Ошибка! Не удалось удалить карточку'));
   }
 
   function handleAddPlaceSubmit(card) {
     bid.postCard(card.name, card.link).then((newCard) => {
       setCards([newCard, ...cards]);
       closeAllPopups();
-    });
+    })
+    .catch(error => console.log('Ошибка! Не удалось создать карточку'));
   }
 
   useEffect(() => {
@@ -91,9 +99,9 @@ function App() {
 
   useEffect(() => {
     bid.getUser().then((res) => {
-      setCurrentUser(...currentUser, res);
+      setCurrentUser(res);
     });
-  }, [currentUser]);
+  }, []);
 
   return (
     <div className="page">
@@ -132,8 +140,7 @@ function App() {
         ></PopupWithForm>
         <ImagePopup
           onClose={closeAllPopups}
-          card={selectedCard.card}
-          isOpen={selectedCard.isOpen}
+          card={selectedCard}
         ></ImagePopup>
       </CurrentUserContext.Provider>
     </div>
