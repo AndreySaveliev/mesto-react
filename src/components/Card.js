@@ -25,6 +25,7 @@ function Card({ card, onCardClick, currentUser, onCardLike, onCardDelete }) {
         className="grid__img"
         src={card.link}
         onClick={() => handleClick(card)}
+        alt={card.name}
       />
       <div className="grid__description">
         <h2 className="grid__name">{card.name}</h2>
