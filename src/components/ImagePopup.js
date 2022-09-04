@@ -13,7 +13,7 @@ function ImagePopup({ onClose, card, isOpen }) {
     >
       <div className="popup-card__block">
         <div className="popup-card__description">
-          <img className="popup-card__image" alt="" src={card.link} />
+          <img className="popup-card__image" alt={card.name} src={card.link} />
           <h2 className="popup-card__title">{card.name}</h2>
         </div>
         <button
