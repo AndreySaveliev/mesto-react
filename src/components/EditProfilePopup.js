@@ -13,12 +13,13 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     setDescription(currentUser.about);
   }, [isOpen]);
 
-  function handleChange(event) {
-    if (event.target.name == "name") {
-      setName(event.target.value);
-    } else {
-      setDescription(event.target.value);
-    }
+
+  function handleChangeNameInput(event) {
+    setName(event.target.value);
+  }
+
+  function handleChangeDescriptionInput(event) {
+    description(event.target.value);
   }
 
   function handleSubmit(event) {
@@ -48,9 +49,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           minLength="2"
           maxLength="40"
           autoComplete="off"
-          value={name}
+          value={name || ''}
           defaultValue={currentUser.name}
-          onChange={handleChange}
+          onChange={handleChangeNameInput}
         />
         <span className="name-error popup__form-input-error"></span>
       </div>
@@ -64,9 +65,9 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
           minLength="2"
           maxLength="200"
           autoComplete="off"
-          value={description}
+          value={description || ''}
           defaultValue={currentUser.about}
-          onChange={handleChange}
+          onChange={handleChangeDescriptionInput}
         />
         <span className="description-error popup__form-input-error"></span>
       </div>
