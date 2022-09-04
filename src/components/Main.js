@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { bid } from "../utils/Api.js";
 import Card from "./Card.js";
-import { CurrentUserContext } from "./CurrentUserContext.js";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main({
   onEditProfile,
   onAddPlace,
