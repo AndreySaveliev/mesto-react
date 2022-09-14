@@ -1,6 +1,5 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
-import { bid } from "../utils/Api.js";
+import { useContext } from "react";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 function Main({
@@ -9,8 +8,8 @@ function Main({
   onEditAvatar,
   onCardClick,
   cards,
-  onCardDelete,
   onCardLike,
+  onCardDeleteClick,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -54,7 +53,7 @@ function Main({
             currentUser={currentUser}
             onCardClick={onCardClick}
             onCardLike={onCardLike}
-            onCardDelete={onCardDelete}
+            onCardDeleteClick={onCardDeleteClick}
           ></Card>
         ))}
       </section>

@@ -1,4 +1,4 @@
-function Card({ card, onCardClick, currentUser, onCardLike, onCardDelete }) {
+function Card({ card, onCardClick, currentUser, onCardLike, onCardDeleteClick}) {
   const isAuthor = card.owner._id === currentUser._id;
 
   const isLiked = card.likes.some((el) => el._id === currentUser._id);
@@ -12,7 +12,8 @@ function Card({ card, onCardClick, currentUser, onCardLike, onCardDelete }) {
   }
 
   function handleCardDelete() {
-    onCardDelete(card);
+    onCardDeleteClick()
+    onCardClick(card._id)
   }
 
   return (
